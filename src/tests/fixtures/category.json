@@ -1,0 +1,26 @@
+[
+  {
+    "model": "book.category",
+    "pk": 1,
+    "fields": {
+      "name": "regular",
+      "price": "1.50"
+    }
+  },
+  {
+    "model": "book.category",
+    "pk": 2,
+    "fields": {
+      "name": "fiction",
+      "price": "3.00"
+    }
+  },
+  {
+    "model": "book.category",
+    "pk": 3,
+    "fields": {
+      "name": "novels",
+      "price": "1.50"
+    }
+  }
+]

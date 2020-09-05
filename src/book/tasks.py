@@ -20,8 +20,14 @@ def history_update():
     }
 
     rents = []
-    for book in BookRent.objects.filter(**filter_kwargs).exclude(**exclude_kwargs).only('id').iterator():
-        rents.append(RentDayHistory(rent_id=book.id))
+    queryset = BookRent.objects\
+        .filter(**filter_kwargs)\
+        .exclude(**exclude_kwargs)\
+        .only('id', 'price')\
+        .iterator()
+
+    for book_rent in queryset:
+        rents.append(RentDayHistory(rent_id=book_rent.id, amount=book_rent.price))
 
         # create new rent day by chunks
         if len(rents) == 10_000:
