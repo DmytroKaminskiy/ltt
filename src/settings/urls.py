@@ -10,6 +10,7 @@ urlpatterns = [
 
     path('', include('pages.urls')),
     path('account/', include('account.urls')),
+    path('book/', include('book.urls')),
 ]
 
 
