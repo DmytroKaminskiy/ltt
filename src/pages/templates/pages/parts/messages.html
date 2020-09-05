@@ -1,0 +1,30 @@
+{% load alerts %}
+
+{% if messages %}
+<div class="shortcode-html">
+    <div class="row">
+        {% for message in messages %}
+            {% with mc=message|message_context %}
+            <div class="col-lg-12">
+                <!-- Teal Alert -->
+                <div class="alert alert-dismissible fade show {{ mc.bg_color }} {{ mc.text_color }} rounded-0" role="alert">
+                    <button type="button" class="close u-alert-close--light" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <div class="media">
+                          <span class="d-flex g-mr-10 g-mt-5">
+                            <i class="{{ mc.icon }} g-font-size-25"></i>
+                          </span>
+                        <span class="media-body align-self-center">
+                        {{ message }}
+                    </span>
+                    </div>
+                </div>
+                <!-- End Teal Alert -->
+            </div>
+            {% endwith %}
+        {% endfor %}
+
+    </div>
+</div>
+{% endif %}

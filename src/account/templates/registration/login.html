@@ -1,0 +1,98 @@
+{% extends 'pages/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock title %}
+
+{% block main %}
+
+    <!-- Login -->
+    <section class="container g-pt-100 g-pb-20">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5 flex-md-unordered g-mb-80">
+                <div class="g-brd-around g-brd-gray-light-v3 g-bg-white rounded g-px-30 g-py-50 mb-4">
+                    <header class="text-center mb-4">
+                        <h1 class="h3 g-color-black g-font-weight-300 text-capitalize">Login to your account</h1>
+                    </header>
+                    <!-- Form -->
+                    <form class="g-py-15" method="post" action="{% url 'login' %}?next={{ request.GET.next }}">
+                        {% csrf_token %}
+                        {% for e in form.non_field_errors %}
+                            <div class="alert alert-danger fz14 p-2">{{ e|safe }}</div>
+                        {% endfor %}
+                        <div class="mb-4 {% if form.username.errors %}has-danger{% endif %}">
+                            <div class="input-group g-brd-primary--focus">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text g-width-45 g-brd-right-none g-brd-gray-light-v3 g-color-gray-dark-v5"><i
+                                            class="icon-finance-067 u-line-icon-pro"></i></span>
+                                </div>
+                                <input class="form-control g-color-black g-brd-gray-light-v3 g-py-15 g-px-15 {% if form.username.errors %}is-invalid{% endif %}"
+                                       type="email" name="username" placeholder="Email Address" value="{{ form.data.username|default_if_none:'' }}"
+                                required>
+                            </div>
+
+                            {% for error in form.username.errors %}
+                                <div class="form-control-feedback">{{ error }}</div>
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="mb-4 {% if form.password.errors %}has-danger{% endif %}">
+                            <div class="input-group g-brd-primary--focus">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text g-width-45 g-brd-right-none g-brd-gray-light-v3 g-color-gray-dark-v5"><i
+                                            class="icon-media-094 u-line-icon-pro"></i></span>
+                                </div>
+                                <input class="form-control g-color-black g-brd-gray-light-v3 g-py-15 g-px-15 {% if form.password.errors %}is-invalid{% endif %}"
+                                       type="password" name="password" placeholder="Password" required>
+                            </div>
+                            {% for error in form.password.errors %}
+                                <div class="form-control-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="row justify-content-between mb-4">
+                            <div class="col align-self-center text-right">
+                                <a class="g-font-size-13" href="{% url "password_reset" %}">Forgot password?</a>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <button class="btn btn-block u-btn-primary g-py-13" type="submit">Login</button>
+                        </div>
+
+                        <div class="d-flex justify-content-center text-center g-mb-30">
+                            <div class="d-inline-block align-self-center g-width-50 g-height-1 g-bg-gray-light-v1"></div>
+                            <span class="align-self-center g-color-gray-dark-v5 mx-4">OR</span>
+                            <div class="d-inline-block align-self-center g-width-50 g-height-1 g-bg-gray-light-v1"></div>
+                        </div>
+
+                        <div class="row no-gutters">
+                            <div class="col-6">
+                                <button class="btn btn-block u-btn-facebook g-py-13 mr-2" type="button">
+                                    <i class="mr-1 fa fa-facebook"></i>
+                                    Facebook
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-block u-btn-twitter g-py-13 ml-2" type="button">
+                                    <i class="mr-1 fa fa-twitter"></i>
+                                    Twitter
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End Form -->
+                </div>
+
+                <div class="text-center">
+                    <p class="g-color-gray-dark-v5 mb-0">
+                        Don't have an account? <a class="g-font-weight-600"
+                                                  href="{% url 'django_registration_register' %}">signup</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Login -->
+{% endblock main %}

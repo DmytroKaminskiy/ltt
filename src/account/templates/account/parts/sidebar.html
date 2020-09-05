@@ -1,0 +1,34 @@
+{% load static %}
+{% load active_link_tags %}
+
+<div class="col-lg-3 g-mb-50 g-mb-0--lg">
+    <!-- User Image -->
+    <div class="u-block-hover g-pos-rel">
+        <figure>
+            <img class="img-fluid w-100 u-block-hover__main--zoom-v1"
+                 src="{% static 'account/img/img5.jpg' %}" alt="{{ request.user.get_full_name }}">
+        </figure>
+        <!-- User Info -->
+        <span class="g-pos-abs g-top-20 g-left-0">
+                      <span class="btn-sm u-btn-primary rounded-0" href="#">
+                          {{ request.user.get_full_name|default:request.user.email }}
+                      </span>
+            <!--                      <small class="d-block g-bg-black g-color-white g-pa-5">Project Manager</small>-->
+                    </span>
+        <!-- End User Info -->
+    </div>
+    <!-- User Image -->
+
+    <!-- Sidebar Navigation -->
+    <div class="list-group list-group-border-0 g-mb-40">
+        <a href="{% url 'account:profile_overall' %}"
+           class="list-group-item justify-content-between {% active_link 'account:profile_overall' %}">
+            <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i> Settings</span>
+        </a>
+        <a href="{% url 'logout' %}"
+           class="list-group-item list-group-item-action justify-content-between">
+            <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i> Logout</span>
+        </a>
+    </div>
+    <!-- End Sidebar Navigation -->
+</div>

@@ -1,0 +1,7 @@
+.idea
+*.pyc
+.coverage
+var/tmp.py
+.pytest_cache/
+*.prof
+.env

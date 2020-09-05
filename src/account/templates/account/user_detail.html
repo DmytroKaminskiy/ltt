@@ -1,0 +1,39 @@
+{% extends 'account/base_profile.html' %}
+
+{% block title %}Edit Profile{% endblock title %}
+
+{% block content %}
+    <!-- Tab panes -->
+
+    <!-- Edit Profile -->
+    <div class="tab-pane fade show active" id="nav-1-1-default-hor-left-underline--1" role="tabpanel"
+         data-parent="#nav-1-1-default-hor-left-underline">
+        <h2 class="h4 g-font-weight-300">Manage your Name, ID and Email Addresses</h2>
+        <p>Below are name, email addresse, contacts and more on file for your account.</p>
+
+        <ul class="list-unstyled g-mb-30">
+            <!-- Name -->
+            <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                <div class="g-pr-10">
+                    <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Name</strong>
+                    <span class="align-top">{{ request.user.get_full_name }}</span>
+                </div>
+            </li>
+            <!-- End Name -->
+
+            <!-- Primary Email Address -->
+            <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                <div class="g-pr-10">
+                    <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">
+                        Email address
+                    </strong>
+                    <span class="align-top">{{ request.user.email }}</span>
+                </div>
+            </li>
+            <!-- End Primary Email Address -->
+
+        </ul>
+
+    </div>
+
+{% endblock content %}

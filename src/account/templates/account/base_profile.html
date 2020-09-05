@@ -1,0 +1,22 @@
+{% extends 'pages/base.html' %}
+
+{% load active_link_tags %}
+
+{% block main %}
+
+    <section class="g-mb-100">
+        <div class="container">
+            <div class="row">
+                {% include 'account/parts/sidebar.html' %}
+
+                <div class="col-lg-9">
+                    <div id="nav-1-1-default-hor-left-underline" class="tab-content">
+                        {% block content %}
+                        {% endblock content %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock main %}

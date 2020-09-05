@@ -1,0 +1,29 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Complete{% endblock title %}
+
+{% block breadcrumb %}{% endblock breadcrumb %}
+
+{% block main %}
+    <div class="g-py-100">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="g-brd-around g-brd-gray-light-v3 g-bg-white rounded g-px-30 g-py-50 mb-4">
+                    <p>
+                        Thanks for signing up!
+                    </p>
+                    <div id="disclose-this">
+                        <p class="">
+                            Now you can login into your account and start using service.
+                        </p>
+                        <p>
+                            <a href="{% url 'login' %}">
+                                Login
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

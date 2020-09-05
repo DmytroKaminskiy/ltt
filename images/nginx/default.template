@@ -1,0 +1,24 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	server_name _;
+
+	auth_basic           "Administrator's Area";
+    auth_basic_user_file /etc/nginx/conf.d/.htpasswd;
+
+	location /coverage {
+	    root /etc/nginx/static_content/media;
+        index index.html;
+	}
+
+	location /static {
+        auth_basic off;
+	    alias /etc/nginx/static_content/static;
+	}
+
+	location / {
+	    proxy_pass http://${WSGI_HOST}:${WSGI_PORT};
+	}
+
+}
