@@ -1,0 +1,67 @@
+{% extends 'account/base_profile.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Edit Profile{% endblock title %}
+
+{% block content %}
+    <!-- Tab panes -->
+
+    <!-- Edit Profile -->
+    <div class="tab-pane fade show active" id="nav-1-1-default-hor-left-underline--1" role="tabpanel"
+         data-parent="#nav-1-1-default-hor-left-underline">
+        <h2 class="h4 g-font-weight-300">Manage your Name, ID and Email Addresses</h2>
+        <p>Below are name, email addresse, contacts and more on file for your account.</p>
+
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="button" class="btn btn-secondary search-book-js">Search</button>
+            <button type="submit" class="btn btn-primary">Create Rent</button>
+        </form>
+
+
+    </div>
+
+{% endblock content %}
+
+{% block extra_js %}
+    <script>
+        $(document).ready(function () {
+            const button = $(".search-book-js");
+            const target_url = "{% url 'book:search' %}";
+            let dropdown = $("#id_book");
+
+            button.click(function (event) {
+                let value = $('#id_book_title').val();
+                event.preventDefault();
+                // send ajax
+                $.ajax({
+                    url: target_url + `?search=${value}`,
+                    type: "GET",
+                    dataType: 'json',
+                    success: function (result) {
+                        console.log(result);
+                        dropdown.empty();
+
+                        if (result.length) {
+                            $.each(result, function () {
+                                dropdown.append($("<option />").val(this.id).text(this.title));
+                            });
+                            $("#id_book").val($("#id_book option:first").val());
+                        } else {
+                            alert('No results found!');
+                        }
+                    },
+                    error: function (xhr, resp, text) {
+                        console.log(xhr.responseJSON.errors);
+                        console.log(resp);
+                        console.log(text);
+                    }
+                })
+            });
+        });
+
+    </script>
+{% endblock extra_js %}

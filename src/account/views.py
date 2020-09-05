@@ -15,6 +15,7 @@ from django_registration.backends.activation.views import RegistrationView as RV
 
 __all__ = ['RegistrationView', 'ProfileOverall']
 
+
 REGISTRATION_SALT = getattr(settings, "REGISTRATION_SALT", "registration")
 
 

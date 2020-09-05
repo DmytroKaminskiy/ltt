@@ -1,0 +1,32 @@
+{% extends 'account/base_profile.html' %}
+
+{% load display %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Rent Lit{% endblock title %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Book Title</th>
+            <th scope="col">Status</th>
+            <th scope="col">End</th>
+            <th scope="col">Total Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in object_list %}
+        <tr>
+            <td>{{ object.rent_id }}</td>
+            <td>{{ object.rent__book__title }}</td>
+            <td>{{ object.rent__status|book_status }}</td>
+            <td>{{ object.rent__end|default:"" }}</td>
+            <td>${{ object.total_amount }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
