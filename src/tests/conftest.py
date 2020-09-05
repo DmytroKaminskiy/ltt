@@ -39,7 +39,8 @@ def db_session(request, django_db_setup, django_db_blocker):
 
 @pytest.fixture(scope='session', autouse=True)
 def fixtures():
-    call_command('loaddata', os.path.join(settings.BASE_DIR, 'tests', 'fixtures', 'book.json'))
+    for fixture in ('category', 'book'):
+        call_command('loaddata', os.path.join(settings.BASE_DIR, 'tests', 'fixtures', f'{fixture}.json'))
 
 
 @pytest.fixture(scope="session")

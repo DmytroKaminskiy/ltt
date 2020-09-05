@@ -1,4 +1,4 @@
-from book.models import BookRent, RentDayHistory
+from book.models import BookRent, Category, RentDayHistory
 
 from django.contrib import admin
 
@@ -10,7 +10,7 @@ class RentDayHistoryInline(admin.TabularInline):
     can_delete = False
     extra = 0
 
-    def has_add_permission(self, request):
+    def has_add_permission(self, request, **kwargs):
         return False
 
 
@@ -22,4 +22,11 @@ class BookRentAdmin(admin.ModelAdmin):
     inlines = (RentDayHistoryInline, )
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'price')
+    readonly_fields = ('id', 'name', )
+    ordering = ('-id',)
+
+
 admin.site.register(BookRent, BookRentAdmin)
+admin.site.register(Category, CategoryAdmin)
