@@ -16,14 +16,18 @@ def test_history_update():
         BookRent(
             user=user,
             book_id=random.choice(books),
-            status=choices.BOOK_STATUS_IN_USE)
+            status=choices.BOOK_STATUS_IN_USE,
+            price='1.5'
+        )
         for _ in range(3)
     ]
     end = [
         BookRent(
             user=user,
             book_id=random.choice(books),
-            status=choices.BOOK_STATUS_END)
+            status=choices.BOOK_STATUS_END,
+            price='2.0'
+        )
         for _ in range(5)
     ]
     BookRent.objects.bulk_create(in_use + end)

@@ -3,35 +3,40 @@
     "model": "book.book",
     "pk": 1,
     "fields": {
-      "title": "Discuss less officer be."
+      "title": "Discuss less officer be.",
+      "category_id":1
     }
   },
   {
     "model": "book.book",
     "pk": 2,
     "fields": {
-      "title": "Far partner color subject appear."
+      "title": "Far partner color subject appear.",
+      "category_id": 1
     }
   },
   {
     "model": "book.book",
     "pk": 3,
     "fields": {
-      "title": "Even head guy appear throw area."
+      "title": "Even head guy appear throw area.",
+      "category_id": 1
     }
   },
   {
     "model": "book.book",
     "pk": 4,
     "fields": {
-      "title": "To hand cost structure leader career mind."
+      "title": "To hand cost structure leader career mind.",
+      "category_id": 1
     }
   },
   {
     "model": "book.book",
     "pk": 5,
     "fields": {
-      "title": "Let board money amount claim write."
+      "title": "Let board money amount claim write.",
+      "category_id": 1
     }
   }
 ]
