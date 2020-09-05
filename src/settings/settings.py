@@ -1,10 +1,12 @@
 import os
+import socket
 import sys
+
+from celery.schedules import crontab
 
 from django.urls import reverse_lazy
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # test_task/src - folder
-
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
@@ -14,7 +16,6 @@ DEBUG = os.environ['SERVER'] == 'dev'
 
 ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(':')
 
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -23,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
 
     # pip installed
     'django_extensions',
@@ -32,6 +34,7 @@ INSTALLED_APPS = [
     # own
     'account',
     'pages',
+    'book',
 ]
 
 MIDDLEWARE = [
@@ -45,7 +48,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'settings.urls'
-
 
 TEMPLATES = [
     {
@@ -72,7 +74,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'settings.wsgi.application'
-
 
 DATABASES = {
     'default': {
@@ -107,6 +108,10 @@ CACHES = {
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 CELERY_BEAT_SCHEDULE = {
+    'clean_users': {
+        'task': 'book.tasks.history_update',
+        'schedule': crontab(minute=5, hour='*/3'),
+    },
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -167,6 +172,20 @@ TESTS_IN_PROGRESS = 'pytest' in os.path.basename(sys.argv[0]) or \
                     'test' in sys.argv[1:] or \
                     'jenkins' in sys.argv[1:] or \
                     os.environ.get('CI')
+
+if DEBUG:
+    # debug tool_bar
+    DEBUG_TOOLBAR_PATCH_SETTINGS = True
+    INTERNAL_IPS = ['127.0.0.1']
+
+    # tricks to have debug toolbar when developing with docker
+    ip = socket.gethostbyname(socket.gethostname())
+    ip = '.'.join(ip.split('.')[:-1])
+    ip = f'{ip}.1'
+    INTERNAL_IPS.append(ip)
+
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
 
 
 if TESTS_IN_PROGRESS:

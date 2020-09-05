@@ -25,6 +25,14 @@
            class="list-group-item justify-content-between {% active_link 'account:profile_overall' %}">
             <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i> Settings</span>
         </a>
+        <a href="{% url 'book:rent-create' %}"
+           class="list-group-item justify-content-between {% active_link 'book:rent-create' %}">
+            <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i> Rent Book</span>
+        </a>
+        <a href="{% url 'book:rents' %}"
+           class="list-group-item justify-content-between {% active_link 'book:rents' %}">
+            <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i> Rent List</span>
+        </a>
         <a href="{% url 'logout' %}"
            class="list-group-item list-group-item-action justify-content-between">
             <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i> Logout</span>
