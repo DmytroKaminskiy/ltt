@@ -1,0 +1,24 @@
+{% extends 'account/base_profile.html' %}
+
+{% block title %}Rent Lit{% endblock title %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Book Title</th>
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in object_list %}
+        <tr>
+            <td>{{ object.id }}</td>
+            <td>{{ object.book.title }}</td>
+            <td>{{ object.get_status_display }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

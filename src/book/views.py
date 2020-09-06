@@ -11,7 +11,10 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, View
 
-__all__ = ['CreateBookRentView', 'SearchBook', 'BookRentTable']
+__all__ = [
+    'CreateBookRentView', 'SearchBook', 'BookRentTableBillingView',
+    'BookRentTableView',
+]
 
 
 class CreateBookRentView(LoginRequiredMixin, CreateView):
@@ -42,7 +45,7 @@ class SearchBook(LoginRequiredMixin, View):
         return JsonResponse(data, safe=False)
 
 
-class BookRentTable(LoginRequiredMixin, ListView):
+class BookRentTableBillingView(LoginRequiredMixin, ListView):
     queryset = RentDayHistory.objects.all()
     template_name = 'account/rent_list.html'
 
@@ -52,3 +55,12 @@ class BookRentTable(LoginRequiredMixin, ListView):
             .filter(rent__user_id=self.request.user.id)\
             .values('rent_id', 'rent', 'rent__book__title', 'rent__status', 'rent__end')\
             .annotate(total_amount=Sum('amount'))
+
+
+class BookRentTableView(LoginRequiredMixin, ListView):
+    queryset = BookRent.objects.all().select_related('book')
+    template_name = 'account/rent_list_table.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(user_id=self.request.user.id)
