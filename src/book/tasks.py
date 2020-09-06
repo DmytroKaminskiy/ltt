@@ -10,24 +10,19 @@ def history_update():
     from book.models import BookRent, RentDayHistory
 
     today = timezone.now().date()
-
-    filter_kwargs = {
-        'status': choices.BOOK_STATUS_IN_USE,
-        'created': today,
-    }
-    exclude_kwargs = {
-        'rentdayhistory__created': today,
-    }
-
     rents = []
+
     queryset = BookRent.objects\
-        .filter(**filter_kwargs)\
-        .exclude(**exclude_kwargs)\
-        .only('id', 'price')\
+        .filter(status=choices.BOOK_STATUS_IN_USE)\
+        .exclude(rentdayhistory__created=today)\
+        .only('id', 'price', 'days_period', 'price_period')\
         .iterator()
 
     for book_rent in queryset:
-        rents.append(RentDayHistory(rent_id=book_rent.id, amount=book_rent.price))
+        rents.append(RentDayHistory(
+            rent_id=book_rent.id,
+            amount=book_rent.get_price())
+        )
 
         # create new rent day by chunks
         if len(rents) == 10_000:
