@@ -8,5 +8,6 @@ app_name = 'book'
 urlpatterns = [
     path('rent-book/create/', views.CreateBookRentView.as_view(), name='rent-create'),
     path('search/', views.SearchBook.as_view(), name='search'),
-    path('rents/', views.BookRentTable.as_view(), name='rents'),
+    path('rents-billing/', views.BookRentTableBillingView.as_view(), name='rents'),
+    path('rents-table/', views.BookRentTableView.as_view(), name='rents-table'),
 ]

@@ -4,7 +4,9 @@
     "pk": 1,
     "fields": {
       "name": "regular",
-      "price": "1.50"
+      "price": "1.50",
+      "price_period": "1.00",
+      "days_period": 2
     }
   },
   {
@@ -12,7 +14,9 @@
     "pk": 2,
     "fields": {
       "name": "fiction",
-      "price": "3.00"
+      "price": "3.00",
+      "price_period": "2.00",
+      "days_period": 1
     }
   },
   {
@@ -20,7 +24,9 @@
     "pk": 3,
     "fields": {
       "name": "novels",
-      "price": "1.50"
+      "price": "1.50",
+      "price_period": "4.50",
+      "days_period": 2
     }
   }
 ]

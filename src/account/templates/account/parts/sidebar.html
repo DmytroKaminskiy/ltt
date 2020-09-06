@@ -31,6 +31,10 @@
         </a>
         <a href="{% url 'book:rents' %}"
            class="list-group-item justify-content-between {% active_link 'book:rents' %}">
+            <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i> Rent Billing List</span>
+        </a>
+        <a href="{% url 'book:rents-table' %}"
+           class="list-group-item justify-content-between {% active_link 'book:rents-table' %}">
             <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i> Rent List</span>
         </a>
         <a href="{% url 'logout' %}"

@@ -21,6 +21,7 @@ from tests.factories import *  # noqa
 
 
 register(UserFactory)  # noqa
+register(BookFactory)  # noqa
 
 
 @pytest.fixture(scope='session', autouse=True)
