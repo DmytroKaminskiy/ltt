@@ -1,5 +1,10 @@
 # ltt
 
+### Start project
+```
+$ cp .env.example .env && docker-compose up -d
+```
+
 ### GIT link
 https://github.com/DmytroKaminskiy/ltt
 

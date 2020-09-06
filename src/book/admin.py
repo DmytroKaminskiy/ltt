@@ -23,8 +23,8 @@ class BookRentAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'price')
-    readonly_fields = ('id', 'name', )
+    list_display = ('id', 'name', 'price', 'days_period', 'price_period')
+    readonly_fields = ('id', )
     ordering = ('-id',)
 
 
