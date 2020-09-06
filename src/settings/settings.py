@@ -187,6 +187,10 @@ if DEBUG:
     INSTALLED_APPS.append('debug_toolbar')
     MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
 
+ADMINS = (
+    ('dmytro.kaminskyi92@gmail.com', 'dmytro.kaminskyi92@gmail.com'),
+)
+
 
 if TESTS_IN_PROGRESS:
     from settings.settings_tests import *  # noqa
