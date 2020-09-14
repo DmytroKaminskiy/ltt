@@ -16,6 +16,7 @@ from pytest_django.fixtures import _django_db_fixture_helper
 
 from pytest_factoryboy import register
 
+from rest_framework import status
 from rest_framework.test import APIClient
 
 from tests.const import PASSWORD, URLS_PATTERN
@@ -86,6 +87,25 @@ def client_auth(client, fake):
     yield client
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='function')
 def api_client():
     yield APIClient()
+
+
+@pytest.fixture(scope='function')
+def api_client_auth(api_client, fake):
+    data = {
+        'email': fake.email(),
+        'password': fake.password(),
+    }
+
+    r = api_client.post(reverse('account-api:users'), data=data)
+
+    assert r.status_code == status.HTTP_201_CREATED, r.content
+    assert "access" in r.json(), r.content
+    token = r.json()['access']
+    api_client.credentials(
+        HTTP_AUTHORIZATION=f'JWT {token}'
+    )
+
+    yield api_client
