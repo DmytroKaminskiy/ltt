@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>016afa6a-71eb-4fb6-bcc4-02ac81afe210.SCHEMA:ltt.public</OriginalElement>
+  <nodes>
+    <node x="450.5" y="100.0">016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.book_category</node>
+    <node x="8.0" y="7.0">016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.account_user</node>
+    <node x="470.0" y="350.0">016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.book_book</node>
+    <node x="354.0" y="542.0">016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.book_rentdayhistory</node>
+    <node x="23.5" y="337.0">016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.book_bookrent</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.book_rentdayhistory" target="016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.book_bookrent">
+      <point x="0.0" y="-61.5" />
+      <point x="0.0" y="127.5" />
+    </edge>
+    <edge source="016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.book_book" target="016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.book_category">
+      <point x="0.0" y="-50.5" />
+      <point x="0.0" y="72.5" />
+    </edge>
+    <edge source="016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.book_bookrent" target="016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.book_book">
+      <point x="46.0" y="-127.5" />
+      <point x="308.5" y="442.0" />
+      <point x="367.0" y="446.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.book_bookrent" target="016afa6a-71eb-4fb6-bcc4-02ac81afe210.TABLE:ltt.public.account_user">
+      <point x="-46.0" y="-127.5" />
+      <point x="180.5" y="497.0" />
+      <point x="121.0" y="497.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="316.0" y="336.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
