@@ -16,6 +16,8 @@ from pytest_django.fixtures import _django_db_fixture_helper
 
 from pytest_factoryboy import register
 
+from rest_framework.test import APIClient
+
 from tests.const import PASSWORD, URLS_PATTERN
 from tests.factories import *  # noqa
 
@@ -82,3 +84,8 @@ def client_auth(client, fake):
     client.user = response.wsgi_request.user
 
     yield client
+
+
+@pytest.fixture(scope='session')
+def api_client():
+    yield APIClient()
