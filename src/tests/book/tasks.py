@@ -39,46 +39,55 @@ def test_history_update(django_assert_num_queries):
     count_history = RentDayHistory.objects.count()
 
     # should be updated only with status in use
-    with django_assert_num_queries(5):
+    with django_assert_num_queries(3):
         history_update()
+
     assert RentDayHistory.objects.count() == count_history + len(in_use)
 
     for br in in_use:
         assert br.rentdayhistory_set.aggregate(total=Sum('amount'))['total'] == 1
+        br.refresh_from_db()
+        assert br.days_period == 1
 
     # should be the same after next call within same day
     history_update()
     assert RentDayHistory.objects.count() == count_history + 3
     for br in in_use:
         assert br.rentdayhistory_set.aggregate(total=Sum('amount'))['total'] == 1
+        br.refresh_from_db()
+        assert br.days_period == 1
 
     # let's try for tomorrow
     tomorrow = timezone.now() + relativedelta(days=1)
     with mock.patch.object(timezone, 'now', return_value=tomorrow):
         # should be updated only with status in use
-        with django_assert_num_queries(5):
+        with django_assert_num_queries(3):
             history_update()
         assert RentDayHistory.objects.count() == count_history + len(in_use) * 2
 
         for br in in_use:
             assert br.rentdayhistory_set.aggregate(total=Sum('amount'))['total'] == 2
+            br.refresh_from_db()
+            assert br.days_period == 0
 
     # and after tomorrow
     after_tomorrow = timezone.now() + relativedelta(days=2)
     with mock.patch.object(timezone, 'now', return_value=after_tomorrow):
         # should be updated only with status in use
-        with django_assert_num_queries(5):
+        with django_assert_num_queries(3):
             history_update()
         assert RentDayHistory.objects.count() == count_history + len(in_use) * 3
 
         for br in in_use:
             assert br.rentdayhistory_set.aggregate(total=Sum('amount'))['total'] == 3.5
+            br.refresh_from_db()
+            assert br.days_period == 0
 
     # and after-after tomorrow)))
     future = timezone.now() + relativedelta(days=3)
     with mock.patch.object(timezone, 'now', return_value=future):
         # should be updated only with status in use
-        with django_assert_num_queries(5):
+        with django_assert_num_queries(3):
             history_update()
         assert RentDayHistory.objects.count() == count_history + len(in_use) * 4
 
