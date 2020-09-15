@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import admin
-from django.urls import include, path, re_path
+from django.urls import include, path, re_path, reverse_lazy
+from django.views.generic import RedirectView
 
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
@@ -22,8 +23,9 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
-
 urlpatterns = [
+    path('register/', RedirectView.as_view(url=reverse_lazy('account:django_registration_register'))),
+
     path('admin/', admin.site.urls),
     path('auth/', include('django.contrib.auth.urls')),
     path('', include('django_registration.backends.activation.urls')),
