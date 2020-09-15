@@ -14,6 +14,11 @@ username: guest
 password: guest12345guest
 ```
 
+### Api Docs
+http://3.134.110.47/api/v1/swagger/
+
+http://3.134.110.47/api/v1/redoc/
+
 ### Test Coverage
 http://3.134.110.47/coverage/
 
