@@ -38,10 +38,10 @@ class BookRent(Price):
     end = models.DateField(null=True)
     status = models.PositiveSmallIntegerField(choices=choices.BOOK_STATUSES,
                                               default=choices.BOOK_STATUS_PENDING)
+    days_period_initial = models.PositiveSmallIntegerField(default=0)
 
     def get_price(self):
-        count_history = self.rentdayhistory_set.count()
-        if count_history < self.days_period:
+        if self.days_period:
             return self.price_period
         return self.price
 
@@ -51,6 +51,7 @@ class BookRent(Price):
             self.price = self.book.category.price
             self.price_period = self.book.category.price_period
             self.days_period = self.book.category.days_period
+            self.days_period_initial = self.book.category.days_period
 
         created = self.pk is None
 
@@ -63,6 +64,7 @@ class BookRent(Price):
                     created=timezone.now().date(),
                     amount=self.get_price(),
                 )
+                self.days_period = models.F('days_period') - 1
             # check if rent was finalized
             elif not self.end and \
                     self.status == choices.BOOK_STATUS_END and \
