@@ -1,18 +1,21 @@
 # ltt
 
-### Start project
-```
-$ cp .env.example .env && docker-compose up -d
-```
+### Resource
+http://3.134.110.47/
 
-### GIT link
-https://github.com/DmytroKaminskiy/ltt
-
-### base auth
+### Base Auth
 ```
 username: guest
 password: guest12345guest
 ```
+
+### Django Admin
+```
+username: dmytro.kaminskyi92@gmail.com
+password: 123456qwerty123456
+```
+
+<b>NOTE: </b>django admin user can be used as regular user
 
 ### Api Docs
 http://3.134.110.47/api/v1/swagger/
@@ -22,12 +25,27 @@ http://3.134.110.47/api/v1/redoc/
 ### Test Coverage
 http://3.134.110.47/coverage/
 
-### Resource
-http://3.134.110.47/
+### Start project
+```
+$ cp .env.example .env && docker-compose up -d
+```
 
 ### Check pull Requests to see task progress by PRs
 https://github.com/DmytroKaminskiy/ltt/pulls
 
+
+- User / Admin interaction
+  To fulfill rent cycle, there should be interaction between two entities.
+  User (customer) - the person who wants to rent the book and pays money.
+  User has ability to register, find book and create Rent Request.
+  Admin - the person who gives books to User and receives them back. Admin will use django admin interface.
+  The process consists out of next steps:
+    1. User finds book and creates Book Request. At this point Book Request will be in status "pending", which means that Admin should confirm the Request.
+    2. Admin confirms Book Request. This can be done in django admin at Book Rent page details. Just select "confirmed" in dropdown and save.
+    3. User goes to the place where he can take the book. When Admin gives book to User, Admin should change status to "in use". At this moment first charge will be created.
+    4. User returns book to Admin. Admin should change status to "end". As result Book Rent will be marked with datetime when user has returned the book.
+
+    <b>NOTE</b>: There is no validation for status change. It can be easily changed from "pending" to "end".
 
 - System design document for the backend
  

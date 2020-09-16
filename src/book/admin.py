@@ -17,7 +17,11 @@ class RentDayHistoryInline(admin.TabularInline):
 class BookRentAdmin(admin.ModelAdmin):
     list_display = ('id', 'user_id', 'book_id', 'status', 'end')
     list_filter = ('status', )
-    readonly_fields = ('user', 'book', 'end', 'price', 'price_period', 'days_period')
+    readonly_fields = (
+        'user', 'book', 'end',
+        'price', 'price_period', 'days_period',
+        'days_period_initial',
+    )
     ordering = ('-id',)
     inlines = (RentDayHistoryInline, )
 
