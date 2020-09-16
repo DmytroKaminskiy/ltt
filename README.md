@@ -1,18 +1,21 @@
 # ltt
 
-### Start project
-```
-$ cp .env.example .env && docker-compose up -d
-```
+### Resource
+http://3.134.110.47/
 
-### GIT link
-https://github.com/DmytroKaminskiy/ltt
-
-### base auth
+### Base Auth
 ```
 username: guest
 password: guest12345guest
 ```
+
+### Django Admin
+```
+username: dmytro.kaminskyi92@gmail.com
+password: 123456qwerty123456
+```
+
+<b>NOTE: </b>django admin user can be used as regular user
 
 ### Api Docs
 http://3.134.110.47/api/v1/swagger/
@@ -22,8 +25,10 @@ http://3.134.110.47/api/v1/redoc/
 ### Test Coverage
 http://3.134.110.47/coverage/
 
-### Resource
-http://3.134.110.47/
+### Start project
+```
+$ cp .env.example .env && docker-compose up -d
+```
 
 ### Check pull Requests to see task progress by PRs
 https://github.com/DmytroKaminskiy/ltt/pulls
