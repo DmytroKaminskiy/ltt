@@ -98,7 +98,7 @@ class BookRentTableBillingView(LoginRequiredMixin, ListView):
         # generate human readable tariff
         tariff = Case(
             When(
-                rent__days_period=0,
+                rent__days_period_initial=0,
                 then=Concat(
                     Value('$'),
                     F('rent__price'),
@@ -135,7 +135,7 @@ class BookRentTableView(LoginRequiredMixin, ListView):
         # generate human readable tariff and category name
         tariff = Case(
             When(
-                days_period=0,
+                days_period_initial=0,
                 then=Concat(
                     Value('$'),
                     F('price'),
