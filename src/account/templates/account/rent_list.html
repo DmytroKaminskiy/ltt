@@ -12,8 +12,11 @@
         <tr>
             <th scope="col">id</th>
             <th scope="col">Book Title</th>
+            <th scope="col">Category</th>
             <th scope="col">Status</th>
             <th scope="col">End</th>
+            <th scope="col">Tariff</th>
+            <th scope="col">Days</th>
             <th scope="col">Total Amount</th>
         </tr>
         </thead>
@@ -22,8 +25,11 @@
         <tr>
             <td>{{ object.rent_id }}</td>
             <td>{{ object.rent__book__title }}</td>
+            <td>{{ object.rent__book__category__name|title }}</td>
             <td>{{ object.rent__status|book_status }}</td>
             <td>{{ object.rent__end|default:"" }}</td>
+            <td>{{ object.tariff }}</td>
+            <td>{{ object.count }}</td>
             <td>${{ object.total_amount }}</td>
         </tr>
         {% endfor %}
