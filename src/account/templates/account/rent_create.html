@@ -47,7 +47,7 @@
 
                         if (result.length) {
                             $.each(result, function () {
-                                dropdown.append($("<option />").val(this.id).text(this.title));
+                                dropdown.append($("<option />").val(this.id).text(this.price_display));
                             });
                             $("#id_book").val($("#id_book option:first").val());
                         } else {

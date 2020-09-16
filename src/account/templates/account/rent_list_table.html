@@ -8,6 +8,7 @@
         <tr>
             <th scope="col">id</th>
             <th scope="col">Book Title</th>
+            <th scope="col">Price</th>
             <th scope="col">Status</th>
         </tr>
         </thead>
@@ -16,6 +17,7 @@
         <tr>
             <td>{{ object.id }}</td>
             <td>{{ object.book.title }}</td>
+            <td>{{ object.tariff }}</td>
             <td>{{ object.get_status_display }}</td>
         </tr>
         {% endfor %}

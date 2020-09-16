@@ -60,11 +60,14 @@ class BookRent(Price):
             # check if status was changed from confirmed to in_use to create RentDayHistory for first day of use
             if self.status == choices.BOOK_STATUS_IN_USE and \
                     old_instance.status == choices.BOOK_STATUS_CONFIRMED:
-                self.rentdayhistory_set.get_or_create(
+                rdh_created = self.rentdayhistory_set.get_or_create(
                     created=timezone.now().date(),
                     amount=self.get_price(),
-                )
-                self.days_period = models.F('days_period') - 1
+                )[1]
+
+                if rdh_created and self.days_period:
+                    self.days_period = models.F('days_period') - 1
+
             # check if rent was finalized
             elif not self.end and \
                     self.status == choices.BOOK_STATUS_END and \

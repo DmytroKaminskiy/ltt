@@ -11,6 +11,7 @@ services:
 #    command: tail -f /dev/null
     depends_on:
       - postgres
+      - redis
     volumes:
       - ./:$PROJECT_ROOT
     dns:
