@@ -3,191 +3,192 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <!-- Title -->
-        <title>{% block title %}{% endblock %}</title>
+<head>
+    <!-- Title -->
+    <title>{% block title %}{% endblock %}</title>
 
-        <!-- Required Meta Tags Always Come First -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
-        <!-- Google Fonts -->
-        <link rel="stylesheet"
-              href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
-        <!-- CSS Global Compulsory -->
-        <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/bootstrap.min.css' %}">
-        <!-- CSS Global Icons -->
-        <link rel="stylesheet" href="{% static 'assets/vendor/icon-awesome/css/font-awesome.min.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/icon-line/css/simple-line-icons.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/icon-etlinefont/style.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/icon-line-pro/style.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/icon-hs/style.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/dzsparallaxer/dzsparallaxer.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/dzsparallaxer/dzsscroller/scroller.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/dzsparallaxer/advancedscroller/plugin.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/animate.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/fancybox/jquery.fancybox.min.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/slick-carousel/slick/slick.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/typedjs/typed.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/hs-megamenu/src/hs.megamenu.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/hamburgers/hamburgers.min.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/custombox/custombox.min.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/chosen/chosen.css' %}">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <!-- Google Fonts -->
+    <link rel="stylesheet"
+          href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/bootstrap.min.css' %}">
+    <!-- CSS Global Icons -->
+    <link rel="stylesheet" href="{% static 'assets/vendor/icon-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/icon-line/css/simple-line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/icon-etlinefont/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/icon-line-pro/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/icon-hs/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/dzsparallaxer/dzsparallaxer.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/dzsparallaxer/dzsscroller/scroller.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/dzsparallaxer/advancedscroller/plugin.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/fancybox/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/slick-carousel/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/typedjs/typed.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/hs-megamenu/src/hs.megamenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/hamburgers/hamburgers.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/custombox/custombox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/chosen/chosen.css' %}">
 
-        <!-- CSS Unify -->
-        <link rel="stylesheet" href="{% static 'assets/css/unify-core.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/unify-components.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/unify-globals.css' %}">
+    <!-- CSS Unify -->
+    <link rel="stylesheet" href="{% static 'assets/css/unify-core.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/unify-components.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/unify-globals.css' %}">
 
-        <!-- CSS Customization -->
-        <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
-        {% block extra_head %}{% endblock extra_head %}
-    </head>
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <body>
-        <main>
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    {% block extra_head %}{% endblock extra_head %}
+</head>
 
-            {% include "pages/parts/header.html" %}
+<body>
+<main>
 
-            {% include "pages/parts/messages.html" %}
+    {% include "pages/parts/header.html" %}
 
-            {% block main %}{% endblock %}
+    {% include "pages/parts/messages.html" %}
 
-            {% include "pages/parts/footer.html" %}
-        </main>
+    {% block main %}{% endblock %}
 
-        <div class="u-outer-spaces-helper"></div>
+    {% include "pages/parts/footer.html" %}
+</main>
 
-
-        <!-- JS Global Compulsory -->
-        <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/jquery-migrate/jquery-migrate.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/popper.js/popper.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/bootstrap/bootstrap.min.js' %}"></script>
+<div class="u-outer-spaces-helper"></div>
 
 
-        <!-- JS Implementing Plugins -->
-        <script src="{% static 'assets/vendor/hs-megamenu/src/hs.megamenu.js' %}"></script>
-        <script src="{% static 'assets/vendor/dzsparallaxer/dzsparallaxer.js' %}"></script>
-        <script src="{% static 'assets/vendor/dzsparallaxer/dzsscroller/scroller.js' %}"></script>
-        <script src="{% static 'assets/vendor/dzsparallaxer/advancedscroller/plugin.js' %}"></script>
-        <script src="{% static 'assets/vendor/fancybox/jquery.fancybox.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/slick-carousel/slick/slick.js' %}"></script>
-        <script src="{% static 'assets/vendor/typedjs/typed.min.js' %}"></script>
+<!-- JS Global Compulsory -->
+<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'assets/vendor/jquery-migrate/jquery-migrate.min.js' %}"></script>
+<script src="{% static 'assets/vendor/popper.js/popper.min.js' %}"></script>
+<script src="{% static 'assets/vendor/bootstrap/bootstrap.min.js' %}"></script>
 
-        <!-- JS Unify -->
-        <script src="{% static 'assets/js/hs.core.js' %}"></script>
-        <script src="{% static 'assets/js/components/hs.header.js' %}"></script>
-        <script src="{% static 'assets/js/helpers/hs.hamburgers.js' %}"></script>
-        <script src="{% static 'assets/js/components/hs.tabs.js' %}"></script>
-        <script src="{% static 'assets/js/components/hs.popup.js' %}"></script>
-        <script src="{% static 'assets/js/components/hs.carousel.js' %}"></script>
-        <script src="{% static 'assets/js/components/text-animation/hs.text-slideshow.js' %}"></script>
-        <script src="{% static 'assets/js/components/hs.go-to.js' %}"></script>
 
-        <!-- JS Customization -->
-        <script src="{% static 'assets/js/custom.js' %}"></script>
+<!-- JS Implementing Plugins -->
+<script src="{% static 'assets/vendor/hs-megamenu/src/hs.megamenu.js' %}"></script>
+<script src="{% static 'assets/vendor/dzsparallaxer/dzsparallaxer.js' %}"></script>
+<script src="{% static 'assets/vendor/dzsparallaxer/dzsscroller/scroller.js' %}"></script>
+<script src="{% static 'assets/vendor/dzsparallaxer/advancedscroller/plugin.js' %}"></script>
+<script src="{% static 'assets/vendor/fancybox/jquery.fancybox.min.js' %}"></script>
+<script src="{% static 'assets/vendor/slick-carousel/slick/slick.js' %}"></script>
+<script src="{% static 'assets/vendor/typedjs/typed.min.js' %}"></script>
 
-        <!-- JS Plugins Init. -->
-        <script>
-            $(document).on('ready', function () {
-                // initialization of carousel
-                $.HSCore.components.HSCarousel.init('.js-carousel');
+<!-- JS Unify -->
+<script src="{% static 'assets/js/hs.core.js' %}"></script>
+<script src="{% static 'assets/js/components/hs.header.js' %}"></script>
+<script src="{% static 'assets/js/helpers/hs.hamburgers.js' %}"></script>
+<script src="{% static 'assets/js/components/hs.tabs.js' %}"></script>
+<script src="{% static 'assets/js/components/hs.popup.js' %}"></script>
+<script src="{% static 'assets/js/components/hs.carousel.js' %}"></script>
+<script src="{% static 'assets/js/components/text-animation/hs.text-slideshow.js' %}"></script>
+<script src="{% static 'assets/js/components/hs.go-to.js' %}"></script>
 
-                // initialization of tabs
-                $.HSCore.components.HSTabs.init('[role="tablist"]');
+<!-- JS Customization -->
+<script src="{% static 'assets/js/custom.js' %}"></script>
 
-                // initialization of popups
-                $.HSCore.components.HSPopup.init('.js-fancybox');
+<!-- JS Plugins Init. -->
+<script>
+    $(document).on('ready', function () {
+        // initialization of carousel
+        $.HSCore.components.HSCarousel.init('.js-carousel');
 
-                // initialization of popups
-                $.HSCore.components.HSModalWindow.init('[data-modal-target]');
+        // initialization of tabs
+        $.HSCore.components.HSTabs.init('[role="tablist"]');
 
-                // initialization of go to
-                $.HSCore.components.HSGoTo.init('.js-go-to');
+        // initialization of popups
+        $.HSCore.components.HSPopup.init('.js-fancybox');
 
-                // initialization of tooltip
-                $('[data-toggle="tooltip-show"]').tooltip('show');
+        // initialization of popups
+        $.HSCore.components.HSModalWindow.init('[data-modal-target]');
 
-                // initialization of text animation (typing)
-                $(".u-text-animation.u-text-animation--typing").typed({
-                    strings: [
-                        "an awesome template",
-                        "perfect template",
-                        "just like a boss"
-                    ],
-                    typeSpeed: 60,
-                    loop: true,
-                    backDelay: 1500
-                });
-            });
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
 
-            $(window).on('load', function () {
-                // initialization of header
-                $.HSCore.components.HSHeader.init($('#js-header'));
-                $.HSCore.helpers.HSHamburgers.init('.hamburger');
+        // initialization of tooltip
+        $('[data-toggle="tooltip-show"]').tooltip('show');
 
-                // initialization of HSMegaMenu component
-                $('.js-mega-menu').HSMegaMenu({
-                    event: 'hover',
-                    pageContainer: $('.container'),
-                    breakpoint: 991
-                });
-            });
+        // initialization of text animation (typing)
+        $(".u-text-animation.u-text-animation--typing").typed({
+            strings: [
+                "an awesome template",
+                "perfect template",
+                "just like a boss"
+            ],
+            typeSpeed: 60,
+            loop: true,
+            backDelay: 1500
+        });
+    });
 
-            $(window).on('resize', function () {
-                setTimeout(function () {
-                    $.HSCore.components.HSTabs.init('[role="tablist"]');
-                }, 200);
-            });
-        </script>
+    $(window).on('load', function () {
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#js-header'));
+        $.HSCore.helpers.HSHamburgers.init('.hamburger');
 
-        <div id="resolutionCaution" class="text-left g-max-width-600 g-bg-white g-pa-20" style="display: none;">
-            <button type="button" class="close" onclick="Custombox.modal.close();">
-                <i class="hs-icon hs-icon-close"></i>
-            </button>
-            <h4 class="g-mb-20">Screen resolution less than 1400px</h4>
-        </div>
+        // initialization of HSMegaMenu component
+        $('.js-mega-menu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 991
+        });
+    });
 
-        <div id="copyModal" class="text-left modal-demo g-bg-white g-color-black g-pa-20" style="display: none;"></div>
+    $(window).on('resize', function () {
+        setTimeout(function () {
+            $.HSCore.components.HSTabs.init('[role="tablist"]');
+        }, 200);
+    });
+</script>
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="{% static 'assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/vendor/prism/themes/prism.css' %}">
-        <!-- End CSS -->
+<div id="resolutionCaution" class="text-left g-max-width-600 g-bg-white g-pa-20" style="display: none;">
+    <button type="button" class="close" onclick="Custombox.modal.close();">
+        <i class="hs-icon hs-icon-close"></i>
+    </button>
+    <h4 class="g-mb-20">Screen resolution less than 1400px</h4>
+</div>
 
-        <!-- Scripts -->
-        <script src="{% static 'assets/vendor/chosen/chosen.jquery.js' %}"></script>
-        <script src="{% static 'assets/vendor/image-select/src/ImageSelect.jquery.js' %}"></script>
-        <script src="{% static 'assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/custombox/custombox.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/clipboard/dist/clipboard.min.js' %}"></script>
+<div id="copyModal" class="text-left modal-demo g-bg-white g-color-black g-pa-20" style="display: none;"></div>
 
-        <!-- Prism -->
-        <script src="{% static 'assets/vendor/prism/prism.js' %}"></script>
-        <script src="{% static 'assets/vendor/prism/components/prism-markup.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/prism/components/prism-css.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/prism/components/prism-clike.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/prism/components/prism-javascript.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/prism/plugins/toolbar/prism-toolbar.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/prism/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js' %}"></script>
-        <!-- End Prism -->
+<!-- CSS -->
+<link rel="stylesheet" href="{% static 'assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/vendor/prism/themes/prism.css' %}">
+<!-- End CSS -->
 
-        <script src="{% static 'assets/js/components/hs.scrollbar.js' %}"></script>
-        <script src="{% static 'assets/js/components/hs.select.js' %}"></script>
-        <script src="{% static 'assets/js/components/hs.modal-window.js' %}"></script>
-        <script src="{% static 'assets/js/components/hs.markup-copy.js' %}"></script>
+<!-- Scripts -->
+<script src="{% static 'assets/vendor/chosen/chosen.jquery.js' %}"></script>
+<script src="{% static 'assets/vendor/image-select/src/ImageSelect.jquery.js' %}"></script>
+<script src="{% static 'assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'assets/vendor/custombox/custombox.min.js' %}"></script>
+<script src="{% static 'assets/vendor/clipboard/dist/clipboard.min.js' %}"></script>
 
-        {#    stripe    #}
-        <script src="https://js.stripe.com/v3/"></script>
+<!-- Prism -->
+<script src="{% static 'assets/vendor/prism/prism.js' %}"></script>
+<script src="{% static 'assets/vendor/prism/components/prism-markup.min.js' %}"></script>
+<script src="{% static 'assets/vendor/prism/components/prism-css.min.js' %}"></script>
+<script src="{% static 'assets/vendor/prism/components/prism-clike.min.js' %}"></script>
+<script src="{% static 'assets/vendor/prism/components/prism-javascript.min.js' %}"></script>
+<script src="{% static 'assets/vendor/prism/plugins/toolbar/prism-toolbar.min.js' %}"></script>
+<script src="{% static 'assets/vendor/prism/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js' %}"></script>
+<!-- End Prism -->
 
-        <!-- End Scripts -->
+<script src="{% static 'assets/js/components/hs.scrollbar.js' %}"></script>
+<script src="{% static 'assets/js/components/hs.select.js' %}"></script>
+<script src="{% static 'assets/js/components/hs.modal-window.js' %}"></script>
+<script src="{% static 'assets/js/components/hs.markup-copy.js' %}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-        {% block extra_js %}{% endblock extra_js %}
+<!-- End Scripts -->
 
-    </body>
+{% block extra_js %}{% endblock extra_js %}
+
+</body>
 
 </html>

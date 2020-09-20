@@ -1,4 +1,4 @@
-from book.models import BookRent, Category, RentDayHistory
+from book.models import Book, BookRent, Category, RentDayHistory
 
 from django.contrib import admin
 
@@ -32,5 +32,15 @@ class CategoryAdmin(admin.ModelAdmin):
     ordering = ('-id',)
 
 
+class BookAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', )
+    list_filter = ('category__name', )
+    fields = ('title', 'cover')
+    search_fields = ('title', 'category__name')
+    readonly_fields = ('id', )
+    ordering = ('-id',)
+
+
 admin.site.register(BookRent, BookRentAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Book, BookAdmin)
