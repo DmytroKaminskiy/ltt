@@ -7,6 +7,6 @@ class IndexView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('book:rent-create')
+            return redirect('book:book-list')
 
         return super().dispatch(request, *args, **kwargs)
