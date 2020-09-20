@@ -72,3 +72,9 @@ def test_bookrenttable(client_auth):
     url = reverse('book:rents')
     response = client_auth.get(url)
     assert response.status_code == 200
+
+
+def test_book_list(client_auth):
+    url = reverse('book:book-list')
+    response = client_auth.get(url)
+    assert response.status_code == 200

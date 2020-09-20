@@ -1,3 +1,6 @@
+from urllib.parse import urlencode
+
+from book.filters import BookFilter
 from book.forms import BookRentForm
 from book.models import Book, BookRent, RentDayHistory
 
@@ -12,9 +15,11 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, View
 
+from django_filters.views import FilterView
+
 __all__ = [
     'CreateBookRentView', 'SearchBook', 'BookRentTableBillingView',
-    'BookRentTableView',
+    'BookRentTableView', 'BookList',
 ]
 
 
@@ -154,3 +159,17 @@ class BookRentTableView(LoginRequiredMixin, ListView):
             output_field=CharField(),
         )
         return queryset.filter(user_id=self.request.user.id).annotate(tariff=tariff)
+
+
+class BookList(FilterView):
+    queryset = Book.objects.all().select_related('category').order_by('-id')
+    template_name = 'account/book_list.html'
+    paginate_by = 12
+    filterset_class = BookFilter
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        get = dict(tuple(self.request.GET.items()))
+        get.pop('page', None)
+        context['request_GET'] = urlencode(get)
+        return context

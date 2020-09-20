@@ -17,6 +17,11 @@ server {
 	    alias /etc/nginx/static_content/static;
 	}
 
+	location /media {
+        auth_basic off;
+	    alias /etc/nginx/static_content/media;
+	}
+
 	location / {
 	    proxy_pass http://${WSGI_HOST}:${WSGI_PORT};
 	}
