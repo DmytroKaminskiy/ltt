@@ -1,0 +1,113 @@
+{% extends 'account/base_profile.html' %}
+
+{% load static %}
+{% load paginator %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Edit Profile{% endblock title %}
+
+{% block content %}
+
+    <form method="get">
+        <label class="g-mb-10" for="id_title__icontains">Title Contains</label>
+
+        <div class="input-group u-file-attach-v1 g-brd-gray-light-v2">
+            <input type="text" name="title__icontains"
+                   value="{{ filter.form.title__icontains.value|default_if_none:"" }}" id="id_title__icontains">
+
+            <div class="input-group-append">
+                <button class="btn btn-md u-btn-primary rounded-0" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <br>
+
+    <div class="shortcode-html">
+        <div class="row text-center">
+
+            {% for book in book_list %}
+                <div class="col-md-4 g-mb-30">
+                    <a class="js-fancybox d-block u-block-hover u-bg-overlay u-bg-overlay--v1 g-bg-black-opacity-0_5--after"
+                       href="javascript:;" data-fancybox="lightbox-gallery-13-1-hidden"
+                       data-src="{% if book.cover %}{{ book.cover.url }}{% else %}http://via.placeholder.com/400x270{% endif %}"
+                       data-caption="Lightbox Gallery">
+                        <img class="img-fluid u-block-hover__main--zoom-v1"
+                             src="{% if book.cover %}{{ book.cover.url }}{% else %}http://via.placeholder.com/400x270{% endif %}"
+                             alt="Image Description">
+                        <strong class="h5 d-block w-100 u-bg-overlay__inner g-absolute-centered g-px-20 g-font-weight-400 g-color-white g-mt-10">
+                            {{ book.title }}
+                        </strong>
+                    </a>
+                    <br>
+                    <div>
+                        <div>
+                            Category: {{ book.category.name|title }}
+                            <br>
+                            price: {{ book.category.display_price }}
+                        </div>
+                        <button class="btn btn-js-click btn-md u-btn-primary g-mr-10 g-mb-15"
+                                data-book-id="{{ book.id }}">
+                            Get The Book
+                        </button>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+    {% if is_paginated %}
+        {% paginate page_obj %}
+    {% endif %}
+
+{% endblock content %}
+
+{% block extra_head %}
+    <!-- CSS Implementing Plugins -->
+    {#        <link rel="stylesheet" href="../../assets/vendor/icon-hs/style.css">#}
+    {#        <link rel="stylesheet" href="../../assets/vendor/fancybox/jquery.fancybox.min.css">#}
+
+    <link rel="stylesheet" href="{% static 'assets/vendor/icon-hs/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/fancybox/jquery.fancybox.min.css' %}">
+{% endblock extra_head %}
+
+{% block extra_js %}
+    <!-- JS Implementing Plugins -->
+    {#    <script src="../../assets/vendor/fancybox/jquery.fancybox.min.js"></script>#}
+    <script src="{% static 'assets/vendor/fancybox/jquery.fancybox.min.js' %}"></script>
+
+    <!-- JS Unify -->
+    {#    <script src="../../assets/js/components/hs.popup.js"></script>#}
+    <script src="{% static 'assets/js/components/hs.popup.js' %}"></script>
+
+
+    <!-- JS Plugins Init. -->
+    <script>
+        $(document).on('ready', function () {
+            // initialization of popups
+            $.HSCore.components.HSPopup.init('.js-fancybox');
+
+            $('.btn-js-click').click(function () {
+
+                {#let csrfToken = "{% csrf_token %}";#}
+                let csrf_token = "{{ csrf_token }}";
+                let bookId = $(this).data('book-id');
+                let target_url = "{% url 'book-api:book-rents' %}"
+
+                $.post(
+                    target_url,
+                    {csrfmiddlewaretoken: csrf_token, book: bookId},
+                    function (data, status) {
+                        toastr.success("Request Was Created Successfully!");
+                    }
+                ).fail(function (xhr, status, error) {
+                    toastr.error("Oops! Error!");
+                });
+            })
+        });
+    </script>
+
+{% endblock extra_js %}

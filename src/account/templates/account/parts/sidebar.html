@@ -25,8 +25,8 @@
            class="list-group-item list-group-item-action justify-content-between {% active_link 'account:profile_overall' %}">
             <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i> Settings</span>
         </a>
-        <a href="{% url 'book:rent-create' %}"
-           class="list-group-item list-group-item-action justify-content-between {% active_link 'book:rent-create' %}">
+        <a href="{% url 'book:book-list' %}"
+           class="list-group-item list-group-item-action justify-content-between {% active_link 'book:rent-create||book:book-list' %}">
             <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i> Rent Book</span>
         </a>
         <a href="{% url 'book:rents' %}"

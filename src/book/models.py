@@ -25,10 +25,17 @@ class Category(Price):
     class Meta:
         verbose_name_plural = 'categories'
 
+    @property
+    def display_price(self):
+        if self.days_period:
+            return f'${self.price_period} first {self.days_period} day/s. ${self.price} each day afterwards.'
+        return f'${self.price} each day.'
+
 
 class Book(models.Model):
     title = models.CharField(max_length=256)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    cover = models.ImageField(null=True, blank=True, default=None, upload_to='uploads/%Y/%m/%d/')
 
 
 class BookRent(Price):

@@ -1,0 +1,74 @@
+<div class="shortcode-html">
+    <!-- Pagination #05 -->
+    <nav aria-label="Page Navigation">
+        <ul class="list-inline">
+
+            {% if page.has_previous %}
+                <li class="list-inline-item">
+                    <a class="u-pagination-v1__item u-pagination-v1-2 g-rounded-50 g-pa-7-16"
+                       href="?page={{ page.previous_page_number }}{{ GET_string }}"
+                       aria-label="Previous">
+                        <span aria-hidden="true">
+                          <i class="fa fa-angle-left"></i>
+                        </span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for page_number in begin %}
+                <li class="list-inline-item g-hidden-sm-down">
+                    <a class="u-pagination-v1__item u-pagination-v1-2 g-rounded-50 g-pa-7-14 {% ifequal page.number page_number %} u-pagination-v1-2--active{% endifequal %}"
+                       href="?page={{ page_number }}{{ GET_string }}">
+                        {{ page_number }}
+                    </a>
+                </li>
+            {% endfor %}
+
+            {% if middle %}
+                <li class="list-inline-item g-hidden-sm-down">
+                    <a class="g-rounded-50 g-pa-7-14">...</a>
+                </li>
+                {% for page_number in middle %}
+                    <li class="list-inline-item g-hidden-sm-down">
+                        <a class="u-pagination-v1__item u-pagination-v1-2 g-rounded-50 g-pa-7-14 {% ifequal page.number page_number %} u-pagination-v1-2--active{% endifequal %}"
+                           href="?page={{ page_number }}{{ GET_string }}">
+                            {{ page_number }}
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+
+            {% if end %}
+                <li class="list-inline-item g-hidden-sm-down">
+                    <a class="g-rounded-50 g-pa-7-14">...</a>
+                </li>
+                {% for page_number in end %}
+                    <li class="list-inline-item g-hidden-sm-down">
+                        <a class="u-pagination-v1__item u-pagination-v1-2 g-rounded-50 g-pa-7-14 {% ifequal page.number page_number %} u-pagination-v1-2--active{% endifequal %}"
+                           href="?page={{ page_number }}{{ GET_string }}">
+                            {{ page_number }}
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+
+            {% if page.has_next %}
+                <li class="list-inline-item">
+                    <a class="u-pagination-v1__item u-pagination-v1-2 g-rounded-50 g-pa-7-16"
+                       href="?page={{ page.next_page_number }}{{ GET_string }}" aria-label="Next">
+                        <span aria-hidden="true">
+                          <i class="fa fa-angle-right"></i>
+                        </span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            {% endif %}
+
+            <li class="list-inline-item float-right">
+                <span class="u-pagination-v1__item-info g-pa-7-14">Page {{ page.number }} of {{ page.paginator.num_pages }}</span>
+            </li>
+        </ul>
+    </nav>
+    <!-- End Pagination #05 -->
+</div>

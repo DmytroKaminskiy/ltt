@@ -105,7 +105,7 @@ https://github.com/DmytroKaminskiy/ltt/pulls
 
 - Good unit test coverage
   
-  check ./commands/check.sh to see the current test coverage (ATM 96.45%) (http://3.134.110.47/coverage/)
+  check ./commands/check.sh to see the current test coverage (ATM 91.8%) (http://3.134.110.47/coverage/)
 
 - Well designed with proper folder structure
   

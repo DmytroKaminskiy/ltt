@@ -2,6 +2,9 @@ from book.api.serializers.bookrent import BookRentSerializer
 from book.models import BookRent
 
 from rest_framework import generics
+from rest_framework.authentication import SessionAuthentication
+
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 __all__ = [
@@ -20,6 +23,8 @@ class BaseView:
 
 
 class ListCreateBookRentView(BaseView, generics.ListCreateAPIView):
+    authentication_classes = (SessionAuthentication, JWTAuthentication)
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
